@@ -1,0 +1,37 @@
+<!-- i created this to count votes in facebook messangers console with my friends ;P -->
+<!-- just paste body of function in messangers console (F12) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div><span>Ja</span></div>
+      <div><span>Ty</span></div>
+      <div><span>ja</span></div>
+      <div><span>on</span></div>
+    </div>
+    <div>
+      <div><span>Ja</span></div>
+      <div><span>Ty</span></div>
+      <div><span>ja</span></div>
+      <div><span>on</span></div>
+    </div>
+  </body>
+  <script>
+    function cinemaCounter() {
+      const messages = [...document.getElementsByTagName("span")];
+      let counter = 0;
+      messages.forEach(message => {
+        if (message.innerHTML.toLowerCase() === "ja") {
+          counter++;
+        }
+      });
+      console.log(`do kina pójdzie nas ${counter}`);
+    }
+    cinemaCounter();
+  </script>
+</html>
