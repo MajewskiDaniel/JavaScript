@@ -25,10 +25,10 @@
   </body>
   <script>
     function cinemaCounter() {
-      const messages = [...document.getElementsByTagName("span")];
+      const messages = [...document.querySelectorAll("span")];
       let counter = 0;
       messages.forEach(message => {
-        if (message.innerHTML.toLowerCase() === "ja") {
+        if (message.innerText.toLowerCase() === "ja") {
           counter++;
         }
       });
