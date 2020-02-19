@@ -7,9 +7,27 @@ function fillNumbers(upperLimit) {
 }
 const primeNumbers = [];
 function findPrimeNumbers(numbers) {
-  for (let i = 0; i <= numbers.length; i++) {}
+  let deletedNumbers = [];
+  // for (let i = 0; i <= Math.sqrt(i) + 1; i++) { //??? wg sitaEratostenesa powinno być ok
+  for (let i = 0; i <= numbers.length; i++) {
+    for (let j = numbers[i] * 2; j <= numbers.length + 1; j += numbers[i]) {
+      deletedNumbers.push(j);
+    }
+  }
+  deletedNumbers.sort((a, b) => (a > b ? 1 : -1));
+  filteredNumbers = deletedNumbers.filter(
+    (value, index, array) => array.indexOf(value) === index
+  );
+  console.table(filteredNumbers);
+  for (let k = 2; k <= 100; k++) {
+    if (filteredNumbers.includes(k) === false) {
+      primeNumbers.push(k);
+    }
+  }
 }
 fillNumbers(100);
+findPrimeNumbers(numbers);
+console.table(primeNumbers);
 
 // 2) Write a guessing game where the user has to guess a secret number. After every guess the program tells the user whether their number was too large or too small. At the end the number of tries needed should be printed. It counts only as one try if they input the same number multiple times consecutively. Range 1-100.
 // 3) Write a function that rotates a list by k elements. For example [1,2,3,4,5,6] rotated by two becomes [3,4,5,6,1,2]. Try solving this without creating a copy of the list.
