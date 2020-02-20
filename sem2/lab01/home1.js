@@ -50,13 +50,25 @@
 // The first few are therefore 1, 1, 1+1=2, 1+2=3, 2+3=5, 3+5=8.
 
 // class Fibonacci {
-//   constructor(number){
-//     this.number = number;
+//   constructor(numberOfNumbers) {
+//     this.numberOfNumbers = numberOfNumbers;
+//     this.fibonacciArray = this.setFibonacci(numberOfNumbers);
 //   }
-//   printFibonacci(number){
-
+//   setFibonacci() {
+//     let fibonacciArray = [0, 1];
+//     if (this.numberOfNumbers > 1) {
+//       for (let i = 2; i <= this.numberOfNumbers; i++) {
+//         fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1]);
+//       }
+//     }
+//     return fibonacciArray;
+//   }
+//   printFibonacci() {
+//     console.table(this.fibonacciArray);
 //   }
 // }
+// const newFibonacciObject = new Fibonacci(11);
+// newFibonacciObject.printFibonacci();
 
 // 5) Write a code that takes a number/string and returns a list of its digits. So for 2342 it should return [2,3,4,2].’A243b’ -> [2,4,3].
 
