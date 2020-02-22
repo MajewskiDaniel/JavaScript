@@ -1,5 +1,5 @@
 // 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
-
+"use strict";
 // Eratosthenes sieve:
 
 // function findPrimeNumbers(upperLimit) {
@@ -31,6 +31,29 @@
 // After every guess the program tells the user whether their number was too large or too small.
 // At the end the number of tries needed should be printed.
 // It counts only as one try if they input the same number multiple times consecutively. Range 1-100.
+
+// const guessingGame = function(min, max) {
+//   let counter = 0;
+//   let guessedNumber;
+//   const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+//   const randomNumberGuess = (min, max) => {
+//     counter = counter + 1;
+//     return (guessedNumber = Math.floor(Math.random() * (max - min + 1) + min));
+//   };
+//   while (randomNumber !== guessedNumber) {
+//     randomNumberGuess(min, max);
+//     if (guessedNumber > randomNumber) {
+//       max = guessedNumber - 1;
+//     } else if (guessedNumber < randomNumber) {
+//       min = guessedNumber + 1;
+//     } else {
+//       console.log(
+//         `Your random number is ${guessedNumber} and I guess it in ${counter} steps`
+//       );
+//     }
+//   }
+// };
+// guessingGame(1, 100);
 
 // 3) Write a function that rotates a list by k elements. For example [1,2,3,4,5,6] rotated by two becomes [3,4,5,6,1,2].
 // Try solving this without creating a copy of the list.
