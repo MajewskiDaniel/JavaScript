@@ -1,7 +1,11 @@
 // IF YOU WANT TO RUN PROGRAM, JUST UNCOMMENT IT'S PART
 
 // 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
+<<<<<<< HEAD
 "use strict";
+=======
+// "use strict";
+>>>>>>> 3afcf283cff2c99524362aa47126e0e16e42d2f8
 // Eratosthenes sieve:
 
 // function findPrimeNumbers(upperLimit) {
@@ -50,7 +54,11 @@
 //       min = guessedNumber + 1;
 //     } else {
 //       console.log(
+<<<<<<< HEAD
 //         `Your random number is ${guessedNumber} and I guessed it in ${counter} steps`
+=======
+//         `Your random number is ${guessedNumber} and I guess it in ${counter} steps`
+>>>>>>> 3afcf283cff2c99524362aa47126e0e16e42d2f8
 //       );
 //     }
 //   }
