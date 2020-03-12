@@ -1,5 +1,7 @@
-// 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
+// IF YOU WANT TO RUN PROGRAM, JUST UNCOMMENT IT'S PART
 
+// 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
+"use strict";
 // Eratosthenes sieve:
 
 // function findPrimeNumbers(upperLimit) {
@@ -15,11 +17,11 @@
 //     }
 //   }
 //   deletedNumbers.sort((a, b) => (a > b ? 1 : -1));
-//   filteredNumbers = deletedNumbers.filter(
+//   deletedNumbers = deletedNumbers.filter(
 //     (value, index, array) => array.indexOf(value) === index
 //   );
-//   for (let k = 2; k <= 100; k++) {
-//     if (filteredNumbers.includes(k) === false) {
+//   for (let k = 2; k <= upperLimit; k++) {
+//     if (deletedNumbers.includes(k) === false) {
 //       primeNumbers.push(k);
 //     }
 //   }
@@ -32,13 +34,36 @@
 // At the end the number of tries needed should be printed.
 // It counts only as one try if they input the same number multiple times consecutively. Range 1-100.
 
+// const guessingGame = function(min, max) {
+//   let counter = 0;
+//   let guessedNumber;
+//   const randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+//   const randomNumberGuess = (min, max) => {
+//     counter = counter + 1;
+//     return (guessedNumber = Math.floor(Math.random() * (max - min + 1) + min));
+//   };
+//   while (randomNumber !== guessedNumber) {
+//     randomNumberGuess(min, max);
+//     if (guessedNumber > randomNumber) {
+//       max = guessedNumber - 1;
+//     } else if (guessedNumber < randomNumber) {
+//       min = guessedNumber + 1;
+//     } else {
+//       console.log(
+//         `Your random number is ${guessedNumber} and I guessed it in ${counter} steps`
+//       );
+//     }
+//   }
+// };
+// guessingGame(1, 100);
+
 // 3) Write a function that rotates a list by k elements. For example [1,2,3,4,5,6] rotated by two becomes [3,4,5,6,1,2].
 // Try solving this without creating a copy of the list.
 
 // const inputArray = [1, 2, 3, 4, 5, 6, 7, 8];
 // function rotateArray(step, inputArray) {
-//   for (i = 1; i <= step; i++) {
-//     removedItem = inputArray.shift();
+//   for (let i = 1; i <= step; i++) {
+//     let removedItem = inputArray.shift();
 //     inputArray.push(removedItem);
 //   }
 //   console.log(inputArray);
@@ -49,34 +74,38 @@
 // The n+1-st Fibonacci number can be computed by adding the n-th and the n-1-th Fibonacci number.
 // The first few are therefore 1, 1, 1+1=2, 1+2=3, 2+3=5, 3+5=8.
 
-// class Fibonacci {
-//   constructor(numberOfNumbers) {
-//     this.numberOfNumbers = numberOfNumbers;
-//     this.fibonacciArray = this.setFibonacci(numberOfNumbers);
-//   }
-//   setFibonacci() {
-//     let fibonacciArray = [0, 1];
-//     if (this.numberOfNumbers > 1) {
-//       for (let i = 2; i <= this.numberOfNumbers; i++) {
-//         fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1]);
-//       }
-//     }
-//     return fibonacciArray;
-//   }
-//   printFibonacci() {
-//     console.table(this.fibonacciArray);
-//   }
-// }
-// const newFibonacciObject = new Fibonacci(11);
-// newFibonacciObject.printFibonacci();
+class Fibonacci {
+  constructor() {
+    this.numberOfNumbers = 0;
+    this.fibonacciArray = [0,1];
+  }
+  setFibonacci(arg) {
+    this.numberOfNumbers = arg;
+    if (this.numberOfNumbers > 1) {
+      for (let i = 2; i <= this.numberOfNumbers; i++) {
+        this.fibonacciArray.push(this.fibonacciArray[i - 2] + this.fibonacciArray[i - 1]);
+      }
+    }
+  }
+  //get all
+  //get single(index)
+  printFibonacci() {
+    console.table(this.fibonacciArray);
+  } //print powinno być poza obiektem
+}
+const newFibonacciObject = new Fibonacci();
+newFibonacciObject.setFibonacci(11);
+newFibonacciObject.setFibonacci(13);
+newFibonacciObject.printFibonacci();
+
 
 // 5) Write a code that takes a number/string and returns a list of its digits. So for 2342 it should return [2,3,4,2].’A243b’ -> [2,4,3].
 
 // const digitList = function(input) {
 //   let result = [];
-//   splittedInput = input.split("");
+//   let splittedInput = input.split("");
 //   splittedInput.forEach(element => {
-//     parsedData = parseInt(element);
+//     let parsedData = parseInt(element);
 //     if (isNaN(parsedData) === false) {
 //       result.push(parsedData);
 //     }
