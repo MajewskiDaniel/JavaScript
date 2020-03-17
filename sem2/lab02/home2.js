@@ -5,29 +5,58 @@
 // 1) Write a program that automatically converts English text to Morse code and vice versa.
 // 2) Write a program that finds the longest palindromic substring of a given string. ‘karakis’, ‘baerren’, ‘kajak’, ‘inni’, ‘sedes’.
 
-const findPalindromic = function(givenString) {
-  const palindromicArray = [];
-  for (let i = 0; i < givenString.length - 1; i++) {
-    for (let j = i + 1; j < givenString.length; j++) {
-      let iLeft = i;
-      let iRight = j;
-      let isTrue = true;
-      while (iLeft < iRight) {
-        if (givenString[iLeft++] !== givenString[iRight--]) {
-          isTrue = false;
+class SearchPalindromic {
+  constructor(givenString) {
+    this.givenString = givenString;
+  }
+  FindPalindromic(givenString) {
+    const palindromicArray = [];
+    for (let i = 0; i < givenString.length - 1; i++) {
+      for (let j = i + 1; j < givenString.length; j++) {
+        let isTheSame = true,
+          idxLeft = i,
+          idxRight = j;
+        while (idxLeft < idxRight) {
+          if (givenString[idxLeft++] !== givenString[idxRight--]) {
+            isTheSame = false;
+          }
+        }
+        if (isTheSame) {
+          // console.log(givenString.slice(i, j + 1));
+          palindromicArray.push(givenString.slice(i, j + 1));
         }
       }
-      if (isTrue) {
-        // console.log(givenString.slice(i, j + 1));
-        palindromicArray.push(givenString.slice(i, j + 1));
-      }
     }
+    return palindromicArray;
   }
-  return palindromicArray;
-};
+}
+let searchPalindromic = new SearchPalindromic();
+let searchResult = searchPalindromic.FindPalindromic("abrakadabra");
+console.log(searchResult);
 
+// const findPalindromic = function(givenString) {
+//   const palindromicArray = [];
+//   for (let i = 0; i < givenString.length - 1; i++) {
+//     for (let j = i + 1; j < givenString.length; j++) {
+//       let isTheSame = true,
+//         idxLeft = i,
+//         idxRight = j;
+//       while (idxLeft < idxRight) {
+//         if (givenString[idxLeft++] !== givenString[idxRight--]) {
+//           isTheSame = false;
+//         }
+//       }
+//       if (isTheSame) {
+//         // console.log(givenString.slice(i, j + 1));
+//         palindromicArray.push(givenString.slice(i, j + 1));
+//       }
+//     }
+//   }
+//   return palindromicArray;
+// };
+
+// console.log(findPalindromic("array"));
 // findPalindromic("kajak");
-console.log(findPalindromic("array"));
 // findPalindromic("asdasdsa");
 // findPalindromic("abcdefg");
 // findPalindromic("abcdefgokoe");
