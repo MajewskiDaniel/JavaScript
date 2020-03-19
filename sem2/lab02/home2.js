@@ -28,6 +28,7 @@ class SearchPalindromic {
       }
     }
     return palindromicArray;
+    // .reduce((a, b) => (a.length > b.length ? a : b));
   }
 }
 let searchPalindromic = new SearchPalindromic();
