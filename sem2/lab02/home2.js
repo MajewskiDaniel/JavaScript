@@ -62,4 +62,34 @@ console.log(searchResult);
 // findPalindromic("abcdefgokoe");
 
 // 3) Given two strings, write a program that efficiently finds the longest common subsequence. ‘karol rolki’
+
+const findCommon = function(firstString, secondString) {
+  const commonArray = [];
+  for (let i = 0; i < firstString.length; i++) {
+    for (let j = 0; j < secondString.length; j++) {
+      let isTheSame = true,
+        idxFirst = i,
+        idxSecond = j,
+        idxEnd;
+      while (
+        idxFirst < firstString.length &&
+        idxSecond < secondString.length &&
+        isTheSame
+      ) {
+        if (firstString[idxFirst++] === secondString[idxSecond++]) {
+          idxEnd = idxFirst - 1;
+          if (i < idxEnd) {
+            commonArray.push(firstString.slice(i, idxEnd + 1));
+          }
+        } else {
+          isTheSame = false;
+        }
+      }
+    }
+  }
+  return commonArray.reduce((a, b) => (a.length > b.length ? a : b));
+};
+
+console.log(findCommon("abrakadabra", "brawo"));
+
 // 4) Write a code that multiplies two matrices together. Dimension validation required.
