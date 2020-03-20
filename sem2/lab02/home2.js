@@ -92,5 +92,6 @@ const findCommon = function(firstString, secondString) {
 };
 
 console.log(findCommon("abrakadabra", "brawo"));
+//refactor case #3 to class, do not forget !!!
 
 // 4) Write a code that multiplies two matrices together. Dimension validation required.
