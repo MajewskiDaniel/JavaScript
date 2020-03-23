@@ -55,7 +55,6 @@ console.log(searchResult);
 //   }
 //   return palindromicArray;
 // };
-
 // console.log(findPalindromic("array"));
 // findPalindromic("kajak");
 // findPalindromic("asdasdsa");
