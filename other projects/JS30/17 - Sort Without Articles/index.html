@@ -67,7 +67,7 @@
 
       document.querySelector("#bands").innerHTML = sortedBands
         .map(band => `<li>${band}</li>`)
-        .join(""); // we need this to skip comas
+        .join(""); // we need this to skip comas (when we try to set something to innerHTML that is not a string, like our array, that it will call .toString() on it and put a coma in between each of them )
     </script>
   </body>
 </html>
