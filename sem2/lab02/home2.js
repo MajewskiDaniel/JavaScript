@@ -68,23 +68,23 @@ class SearchCommon {
     this.firstString = firstString;
     this.secondString = secondString;
   }
-  FindCommon(firstString, secondString) {
+  FindCommon() {
     const commonArray = [];
-    for (let i = 0; i < firstString.length; i++) {
-      for (let j = 0; j < secondString.length; j++) {
+    for (let i = 0; i < this.firstString.length; i++) {
+      for (let j = 0; j < this.secondString.length; j++) {
         let isTheSame = true,
           idxFirst = i,
           idxSecond = j,
           idxEnd;
         while (
-          idxFirst < firstString.length &&
-          idxSecond < secondString.length &&
+          idxFirst < this.firstString.length &&
+          idxSecond < this.secondString.length &&
           isTheSame
         ) {
-          if (firstString[idxFirst++] === secondString[idxSecond++]) {
+          if (this.firstString[idxFirst++] === this.secondString[idxSecond++]) {
             idxEnd = idxFirst - 1;
             if (i < idxEnd) {
-              commonArray.push(firstString.slice(i, idxEnd + 1));
+              commonArray.push(this.firstString.slice(i, idxEnd + 1));
             }
           } else {
             isTheSame = false;
@@ -96,8 +96,6 @@ class SearchCommon {
   }
 }
 let searchCommon = new SearchCommon("abrakadabra", "brawo");
-let resultCommon = searchCommon.FindCommon("abrakadabra", "brawo");
-console.log(resultCommon);
-//refactor case #3 to class, do not forget !!!
+console.log(searchCommon.FindCommon());
 
 // 4) Write a code that multiplies two matrices together. Dimension validation required.
