@@ -99,3 +99,40 @@ let searchCommon = new SearchCommon("abrakadabra", "brawo");
 console.log(searchCommon.FindCommon());
 
 // 4) Write a code that multiplies two matrices together. Dimension validation required.
+
+const matrixA = [
+  [3, 2, 0],
+  [1, 1, 2]
+];
+
+const matrixB = [
+  [2, 4],
+  [1, 0],
+  [0, 3]
+];
+
+function matrixValidation(matrixA, matrixB) {
+  let correct = false,
+    correctA = false,
+    correctB = false;
+  if (matrixA.length === 1 && matrixB.length === 1) {
+    correct = true;
+  }
+  for (let i = 0; i < matrixA.length - 1; i++) {
+    if (matrixA[i].length === matrixA[i + 1].length) {
+      correctA = true;
+    }
+  }
+  for (let i = 0; i < matrixB.length - 1; i++) {
+    if (matrixB[i].length === matrixB[i + 1].length) {
+      correctB = true;
+    }
+  }
+  if (correctA && correctB) {
+    if (matrixA[0].length === matrixB.length) {
+      correct = true;
+    }
+  }
+  return correct;
+}
+console.log(matrixValidation(matrixA, matrixB));
