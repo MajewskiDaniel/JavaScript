@@ -63,34 +63,41 @@ console.log(searchResult);
 
 // 3) Given two strings, write a program that efficiently finds the longest common subsequence. ‘karol rolki’
 
-const findCommon = function(firstString, secondString) {
-  const commonArray = [];
-  for (let i = 0; i < firstString.length; i++) {
-    for (let j = 0; j < secondString.length; j++) {
-      let isTheSame = true,
-        idxFirst = i,
-        idxSecond = j,
-        idxEnd;
-      while (
-        idxFirst < firstString.length &&
-        idxSecond < secondString.length &&
-        isTheSame
-      ) {
-        if (firstString[idxFirst++] === secondString[idxSecond++]) {
-          idxEnd = idxFirst - 1;
-          if (i < idxEnd) {
-            commonArray.push(firstString.slice(i, idxEnd + 1));
+class SearchCommon {
+  constructor(firstString, secondString) {
+    this.firstString = firstString;
+    this.secondString = secondString;
+  }
+  FindCommon(firstString, secondString) {
+    const commonArray = [];
+    for (let i = 0; i < firstString.length; i++) {
+      for (let j = 0; j < secondString.length; j++) {
+        let isTheSame = true,
+          idxFirst = i,
+          idxSecond = j,
+          idxEnd;
+        while (
+          idxFirst < firstString.length &&
+          idxSecond < secondString.length &&
+          isTheSame
+        ) {
+          if (firstString[idxFirst++] === secondString[idxSecond++]) {
+            idxEnd = idxFirst - 1;
+            if (i < idxEnd) {
+              commonArray.push(firstString.slice(i, idxEnd + 1));
+            }
+          } else {
+            isTheSame = false;
           }
-        } else {
-          isTheSame = false;
         }
       }
     }
+    return commonArray.reduce((a, b) => (a.length > b.length ? a : b));
   }
-  return commonArray.reduce((a, b) => (a.length > b.length ? a : b));
-};
-
-console.log(findCommon("abrakadabra", "brawo"));
+}
+let searchCommon = new SearchCommon("abrakadabra", "brawo");
+let resultCommon = searchCommon.FindCommon("abrakadabra", "brawo");
+console.log(resultCommon);
 //refactor case #3 to class, do not forget !!!
 
 // 4) Write a code that multiplies two matrices together. Dimension validation required.
