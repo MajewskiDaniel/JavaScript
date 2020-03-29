@@ -1,11 +1,7 @@
 // IF YOU WANT TO RUN PROGRAM, JUST UNCOMMENT IT'S PART
 
 // 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
-<<<<<<< HEAD
 "use strict";
-=======
-// "use strict";
->>>>>>> 3afcf283cff2c99524362aa47126e0e16e42d2f8
 // Eratosthenes sieve:
 
 // function findPrimeNumbers(upperLimit) {
@@ -54,11 +50,7 @@
 //       min = guessedNumber + 1;
 //     } else {
 //       console.log(
-<<<<<<< HEAD
 //         `Your random number is ${guessedNumber} and I guessed it in ${counter} steps`
-=======
-//         `Your random number is ${guessedNumber} and I guess it in ${counter} steps`
->>>>>>> 3afcf283cff2c99524362aa47126e0e16e42d2f8
 //       );
 //     }
 //   }
@@ -85,13 +77,15 @@
 class Fibonacci {
   constructor() {
     this.numberOfNumbers = 0;
-    this.fibonacciArray = [0,1];
+    this.fibonacciArray = [0, 1];
   }
   setFibonacci(arg) {
     this.numberOfNumbers = arg;
     if (this.numberOfNumbers > 1) {
       for (let i = 2; i <= this.numberOfNumbers; i++) {
-        this.fibonacciArray.push(this.fibonacciArray[i - 2] + this.fibonacciArray[i - 1]);
+        this.fibonacciArray.push(
+          this.fibonacciArray[i - 2] + this.fibonacciArray[i - 1]
+        );
       }
     }
   }
@@ -105,7 +99,6 @@ const newFibonacciObject = new Fibonacci();
 newFibonacciObject.setFibonacci(11);
 newFibonacciObject.setFibonacci(13);
 newFibonacciObject.printFibonacci();
-
 
 // 5) Write a code that takes a number/string and returns a list of its digits. So for 2342 it should return [2,3,4,2].’A243b’ -> [2,4,3].
 
