@@ -137,5 +137,9 @@ function matrixValidation(matrixA, matrixB) {
 }
 console.log(matrixValidation(matrixA, matrixB));
 
+// mnożenie zdefiniowane jest wyłącznie dla macierzy, z których pierwsza ma tyle kolumn, co druga wierszy.
+// Jeżeli A jest macierzą n x m, a B macierzą typu m x p, to ich iloczyn, oznaczany AB, czasem też A*B,
+// jest macierzą o wymiarach n x p.
+
 // matrix multiplication: https://pl.wikipedia.org/wiki/Mno%C5%BCenie_macierzy
 // c12 = a11 * b12 + a12 * b22
