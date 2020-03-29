@@ -136,3 +136,6 @@ function matrixValidation(matrixA, matrixB) {
   return correct;
 }
 console.log(matrixValidation(matrixA, matrixB));
+
+// matrix multiplication: https://pl.wikipedia.org/wiki/Mno%C5%BCenie_macierzy
+// c12 = a11 * b12 + a12 * b22
