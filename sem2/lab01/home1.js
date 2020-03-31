@@ -2,7 +2,7 @@
 
 // 1) Write a program that prints all prime numbers in given range. Take sub from 1-100.
 "use strict";
-// Eratosthenes sieve:
+// I used Eratosthenes sieve:
 
 // function findPrimeNumbers(upperLimit) {
 //   const numbers = [];
