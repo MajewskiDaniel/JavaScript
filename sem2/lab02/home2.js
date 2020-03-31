@@ -133,9 +133,30 @@ function matrixValidation(matrixA, matrixB) {
       correct = true;
     }
   }
+  if (!correct) {
+    console.log("wrong matrix dimensions");
+  }
   return correct;
 }
 console.log(matrixValidation(matrixA, matrixB));
+
+function matrixMulti(matrixA, matrixB, matrixValidation) {
+  let result = [];
+  for (let i = 0; i < matrixA.length; i++) {
+    let row = [];
+    for (let j = 0; j < matrixB.length; j++) {
+      let element = 0;
+      for (let k = 0; k < matrixB[0].length; k++) {
+        element += matrixA[i][k] * matrixB[k][j];
+      }
+      row.push(element);
+    }
+    result.push(row);
+  }
+  return result;
+}
+
+console.table(matrixMulti(matrixA, matrixB));
 
 // mnożenie zdefiniowane jest wyłącznie dla macierzy, z których pierwsza ma tyle kolumn, co druga wierszy.
 // Jeżeli A jest macierzą n x m, a B macierzą typu m x p, to ich iloczyn, oznaczany AB, czasem też A*B,
