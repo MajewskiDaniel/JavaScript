@@ -140,7 +140,7 @@ function matrixValidation(matrixA, matrixB) {
 }
 console.log(matrixValidation(matrixA, matrixB));
 
-function matrixMulti(matrixA, matrixB, matrixValidation) {
+function matrixMulti(matrixA, matrixB) {
   let result = [];
   for (let i = 0; i < matrixA.length; i++) {
     let row = [];
