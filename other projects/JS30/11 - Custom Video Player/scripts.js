@@ -11,6 +11,11 @@ const ranges = player.querySelectorAll(".player__slider");
 function togglePlay() {
   const method = video.paused ? "play" : "pause";
   video[method]();
+  //   if (video.paused) {    // <-- the same as above
+  //     video.play();
+  //   } else {
+  //     video.pause();
+  //   }
 }
 function updateButton() {
   const icon = this.paused ? "►" : "❚ ❚";
@@ -43,5 +48,10 @@ ranges.forEach(range => range.addEventListener("change", handleRangeUpdate));
 let mousedown = false;
 progress.addEventListener("click", scrub);
 progress.addEventListener("mousemove", e => mousedown && scrub(e));
+// progress.addEventListener("mousemove", () => {   //the same as above
+//   if (mousedown) {
+//     scrub();
+//   }
+// });
 progress.addEventListener("mousedown", () => (mousedown = true));
 progress.addEventListener("mouseup", () => (mousedown = false));
