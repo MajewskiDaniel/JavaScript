@@ -102,13 +102,13 @@ console.log(searchCommon.FindCommon());
 
 const matrixA = [
   [3, 2, 0],
-  [1, 1, 2]
+  [1, 1, 2],
 ];
 
 const matrixB = [
   [2, 4, 0],
   [1, 0, 2],
-  [0, 3, 3]
+  [0, 3, 3],
 ];
 //class matrixValidator, method multiplyValidation:
 function matrixValidation(matrixA, matrixB) {
@@ -140,6 +140,7 @@ function matrixValidation(matrixA, matrixB) {
 }
 console.log(matrixValidation(matrixA, matrixB));
 
+// add class: MatrixOperator and another class to present result
 function matrixMulti(matrixA, matrixB) {
   let result = [];
   for (let i = 0; i < matrixA.length; i++) {
