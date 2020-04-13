@@ -17,15 +17,15 @@ function handSelection() {
   game.playerHand = this.dataset.option;
   hands.forEach((hand) => (hand.style.boxShadow = ""));
   this.style.boxShadow = "0 0 0 4px yellow";
-  console.log("Player: " + game.playerHand);
+  //   console.log("Player: " + game.playerHand);
 }
 hands.forEach((hand) => hand.addEventListener("click", handSelection));
 
-// let's play
+// Start game
 function startGame() {
   if (!game.playerHand) return alert("wybierz dłoń");
   game.aiHand = hands[Math.floor(Math.random() * 3)].dataset.option;
-  console.log("AI: " + game.aiHand);
+  //   console.log("AI: " + game.aiHand);
 
   const gameResult = checkResult(game.playerHand, game.aiHand);
   publishResult(game.playerHand, game.aiHand, gameResult);
@@ -60,17 +60,17 @@ function publishResult(player, ai, result) {
 // game result
 function checkResult(player, ai) {
   if (player === ai) {
-    console.log("draw");
+    // console.log("draw");
     return "draw";
   } else if (
     (player === "paper" && ai === "rock") ||
     (player === "rock" && ai === "scissors") ||
     (player === "scissors" && ai === "paper")
   ) {
-    console.log("You won");
+    // console.log("You won");
     return "win";
   } else {
-    console.log("You lose");
+    // console.log("You lose");
     return "loss";
   }
 }
@@ -80,4 +80,5 @@ function endGame() {
   document.querySelector(`[data-option="${game.playerHand}"]`).style.boxShadow =
     "";
   game.playerHand = "";
+  game.aiHand = "";
 }
