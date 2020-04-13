@@ -19,20 +19,6 @@ function handSelection() {
   this.style.boxShadow = "0 0 0 4px yellow";
   //   console.log("Player: " + game.playerHand);
 }
-hands.forEach((hand) => hand.addEventListener("click", handSelection));
-
-// Start game
-function startGame() {
-  if (!game.playerHand) return alert("wybierz dłoń");
-  game.aiHand = hands[Math.floor(Math.random() * 3)].dataset.option;
-  //   console.log("AI: " + game.aiHand);
-
-  const gameResult = checkResult(game.playerHand, game.aiHand);
-  publishResult(game.playerHand, game.aiHand, gameResult);
-  endGame();
-}
-
-document.querySelector(".start").addEventListener("click", startGame);
 
 // print results
 function publishResult(player, ai, result) {
@@ -82,3 +68,17 @@ function endGame() {
   game.playerHand = "";
   game.aiHand = "";
 }
+
+// Start game
+function startGame() {
+  if (!game.playerHand) return alert("wybierz dłoń");
+  game.aiHand = hands[Math.floor(Math.random() * 3)].dataset.option;
+  //   console.log("AI: " + game.aiHand);
+
+  const gameResult = checkResult(game.playerHand, game.aiHand);
+  publishResult(game.playerHand, game.aiHand, gameResult);
+  endGame();
+}
+
+hands.forEach((hand) => hand.addEventListener("click", handSelection));
+document.querySelector(".start").addEventListener("click", startGame);
