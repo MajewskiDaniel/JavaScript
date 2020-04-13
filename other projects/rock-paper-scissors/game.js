@@ -29,6 +29,7 @@ function startGame() {
 
   const gameResult = checkResult(game.playerHand, game.aiHand);
   publishResult(game.playerHand, game.aiHand, gameResult);
+  endGame();
 }
 
 document.querySelector(".start").addEventListener("click", startGame);
@@ -72,4 +73,10 @@ function checkResult(player, ai) {
     console.log("You lose");
     return "loss";
   }
+}
+
+// endGame
+function endGame() {
+  document.querySelector(`[data-option="${game.playerHand}"]`).style.boxShadow =
+    "";
 }
