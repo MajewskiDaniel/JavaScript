@@ -15,5 +15,5 @@ window.addEventListener("keydown", (e) => {
   console.log(e.keyCode, color);
 });
 
-//arrow up = 38
-//arrow down = 40
+//arrow up key = 38
+//arrow down key = 40
