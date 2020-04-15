@@ -34,9 +34,9 @@ const cursorAnimation = () => {
 };
 setInterval(cursorAnimation, 500);
 
-// function playSound {
-//   const audio = document.querySelector('audio[data-sound="knocking"]')
-//   audio.play();
-// }
+function playSound() {
+  const audio = document.querySelector('audio[data-sound="knocking"]');
+  audio.play();
+}
 
-// playSound();
+setTimeout(playSound, 26000);
