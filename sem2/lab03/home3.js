@@ -26,7 +26,32 @@ const treasureMap = [
 ];
 const startingArea = 11;
 
-const treasureHunt = function (treasureMap, startingArea) {};
+const mapValidation = function (treasureMap) {
+  let mapCorrect = true;
+  treasureMap.forEach((row) => {
+    row.forEach((hint) => {
+      if (typeof hint !== "number") mapCorrect = false;
+    });
+  });
+  return `map is ${mapCorrect}`;
+};
+
+const treasureHunt = function (treasureMap, startingArea) {
+  let searchArea = startingArea;
+  let path = [];
+  path.push(startingArea);
+  while (searchArea !== treasureMap[parseInt(searchArea.toString()[0]) - 1][parseInt(searchArea.toString()[1]) - 1]) {
+    searchArea = treasureMap[parseInt(searchArea.toString()[0]) - 1][parseInt(searchArea.toString()[1]) - 1];
+    path.push(searchArea);
+  }
+  return {
+    path: path,
+    treasure: `the treasure is in: row ${searchArea.toString()[0]}, column ${searchArea.toString()[1]};`,
+  };
+};
+console.log(mapValidation(treasureMap));
+console.table(treasureHunt(treasureMap, startingArea).path);
+console.log(treasureHunt(treasureMap, startingArea).treasure);
 
 // 2) Chess board. Program is to choose at random one of the chess piece (except the pawn) and place it at the random spot on the board.
 // After placing any piece (except first one) check all present pieces move ranges and see if any can reach other piece. Is so Give that pieces position and quit program.
