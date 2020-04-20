@@ -57,5 +57,13 @@ console.log(treasureHunt(treasureMap, startingArea).treasure);
 // After placing any piece (except first one) check all present pieces move ranges and see if any can reach other piece. Is so Give that pieces position and quit program.
 // FACTORY (with class hierarhy) + SINGLETON pattern
 
+// chess board 8x8: a-h and 1-8
+// pieces:
+// king -
+// queen -
+// bishop - goniec
+// knight - skoczek
+// rook - wieża
+
 // 3) [EXAM] Create bouncy simulator. Get board from ExampleInput.js. X – border, 0 – boards object can travel, 1 – bouncing object.
 // The program is to show how the object would travel and bounce against the walls. The program is to end when object comes back to original position.
