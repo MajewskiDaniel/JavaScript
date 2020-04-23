@@ -145,6 +145,35 @@ let searchPalindromic = new SearchPalindromic();
 let searchResult = searchPalindromic.FindPalindromic("abrakadabra");
 console.log(searchResult);
 
+<<<<<<< HEAD
+=======
+// const findPalindromic = function(givenString) {
+//   const palindromicArray = [];
+//   for (let i = 0; i < givenString.length - 1; i++) {
+//     for (let j = i + 1; j < givenString.length; j++) {
+//       let isTheSame = true,
+//         idxLeft = i,
+//         idxRight = j;
+//       while (idxLeft < idxRight) {
+//         if (givenString[idxLeft++] !== givenString[idxRight--]) {
+//           isTheSame = false;
+//         }
+//       }
+//       if (isTheSame) {
+//         // console.log(givenString.slice(i, j + 1));
+//         palindromicArray.push(givenString.slice(i, j + 1));
+//       }
+//     }
+//   }
+//   return palindromicArray;
+// };
+// console.log(findPalindromic("array"));
+// findPalindromic("kajak");
+// findPalindromic("asdasdsa");
+// findPalindromic("abcdefg");
+// findPalindromic("abcdefgokoe");
+
+>>>>>>> f6e9c365d225e519507c5963cfc9f693271bbddf
 // 3) Given two strings, write a program that efficiently finds the longest common subsequence. ‘karol rolki’
 
 class SearchCommon {
@@ -186,12 +215,17 @@ console.log(searchCommon.FindCommon());
 
 const matrixA = [
   [3, 2, 0],
+<<<<<<< HEAD
   [1, 1, 2]
+=======
+  [1, 1, 2],
+>>>>>>> f6e9c365d225e519507c5963cfc9f693271bbddf
 ];
 
 const matrixB = [
   [2, 4, 0],
   [1, 0, 2],
+<<<<<<< HEAD
   [0, 3, 3]
 ];
 
@@ -264,3 +298,55 @@ let matrixCalculator = new MatrixCalculator(matrixValidator, matrixOperator);
 
 let result = matrixCalculator.MatrixMultiply(matrixA, matrixB);
 console.table(result);
+=======
+  [0, 3, 3],
+];
+//class matrixValidator, method multiplyValidation:
+function matrixValidation(matrixA, matrixB) {
+  let correct = false,
+    correctA = false,
+    correctB = false;
+  if (matrixA.length === 1 && matrixB.length === 1) {
+    correct = true;
+  }
+  for (let i = 0; i < matrixA.length - 1; i++) {
+    if (matrixA[i].length === matrixA[i + 1].length) {
+      correctA = true;
+    }
+  }
+  for (let i = 0; i < matrixB.length - 1; i++) {
+    if (matrixB[i].length === matrixB[i + 1].length) {
+      correctB = true;
+    }
+  }
+  if (correctA && correctB) {
+    if (matrixA[0].length === matrixB.length) {
+      correct = true;
+    }
+  }
+  if (!correct) {
+    console.log("wrong matrix dimensions");
+  }
+  return correct;
+}
+console.log(matrixValidation(matrixA, matrixB));
+
+// add class: MatrixOperator and another class to present result
+function matrixMulti(matrixA, matrixB) {
+  let result = [];
+  for (let i = 0; i < matrixA.length; i++) {
+    let row = [];
+    for (let j = 0; j < matrixB.length; j++) {
+      let element = 0;
+      for (let k = 0; k < matrixB[0].length; k++) {
+        element += matrixA[i][k] * matrixB[k][j];
+      }
+      row.push(element);
+    }
+    result.push(row);
+  }
+  return result;
+}
+
+console.table(matrixMulti(matrixA, matrixB));
+>>>>>>> f6e9c365d225e519507c5963cfc9f693271bbddf
