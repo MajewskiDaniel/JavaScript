@@ -2,7 +2,117 @@
 // USE CLASSES IN ALL CASSES
 // USE STRICT MODE
 // TRY TO BE OPTIMAL
-// 1) Write a program that automatically converts English text to Morse code and vice versa.
+// 1) Write a program that automatically converts English text to Morse code and vice versa - example
+
+const morseCodeMap = {
+  "0": "-----",
+  "1": ".----",
+  "2": "..---",
+  "3": "...--",
+  "4": "....-",
+  "5": ".....",
+  "6": "-....",
+  "7": "--...",
+  "8": "---..",
+  "9": "----.",
+  a: ".-",
+  b: "-...",
+  c: "-.-.",
+  d: "-..",
+  e: ".",
+  f: "..-.",
+  g: "--.",
+  h: "....",
+  i: "..",
+  j: ".---",
+  k: "-.-",
+  l: ".-..",
+  m: "--",
+  n: "-.",
+  o: "---",
+  p: ".--.",
+  q: "--.-",
+  r: ".-.",
+  s: "...",
+  t: "-",
+  u: "..-",
+  v: "...-",
+  w: ".--",
+  x: "-..-",
+  y: "-.--",
+  z: "--..",
+  ".": ".-.-.-",
+  ",": "--..--",
+  "?": "..--..",
+  "!": "-.-.--",
+  "-": "-....-",
+  "/": "-..-.",
+  "@": ".--.-.",
+  "(": "-.--.",
+  ")": "-.--.-",
+  " ": " "
+};
+
+var ulits = (function() {
+  function swap(json) {
+    var ret = {};
+    for (var key in json) {
+      ret[json[key]] = key;
+    }
+    return ret;
+  }
+
+  return {
+    swap
+  };
+})();
+
+class UnitConverter {
+  constructor(convertCodeMap, reverseConvertCodeMap) {
+    this.convertCodeMap = convertCodeMap;
+    this.reverseConvertCodeMap = reverseConvertCodeMap;
+  }
+
+  Convert(char) {
+    return this.convertCodeMap[char];
+  }
+
+  Unconvert(char) {
+    return this.reverseConvertCodeMap[char];
+  }
+}
+
+class SetsConverter {
+  constructor(convert, unconvert) {
+    this.convert = convert;
+    this.unconvert = unconvert;
+  }
+
+  ConvertString(text) {
+    return text
+      .toLowerCase()
+      .split("")
+      .map(this.convert);
+  }
+
+  UnconvertArray(array) {
+    return array.map(this.unconvert).join("");
+  }
+}
+
+let unitConverter = new UnitConverter(morseCodeMap, ulits.swap(morseCodeMap));
+
+let setsConverter = new SetsConverter(
+  unitConverter.Convert.bind(unitConverter),
+  unitConverter.Unconvert.bind(unitConverter)
+);
+
+let convertionResult = setsConverter.ConvertString("Karol");
+console.log(convertionResult);
+let unconversionResult = setsConverter.UnconvertArray(convertionResult);
+console.log(unconversionResult);
+
+
 // 2) Write a program that finds the longest palindromic substring of a given string. ‘karakis’, ‘baerren’, ‘kajak’, ‘inni’, ‘sedes’.
 
 class SearchPalindromic {
@@ -34,32 +144,6 @@ class SearchPalindromic {
 let searchPalindromic = new SearchPalindromic();
 let searchResult = searchPalindromic.FindPalindromic("abrakadabra");
 console.log(searchResult);
-
-// const findPalindromic = function(givenString) {
-//   const palindromicArray = [];
-//   for (let i = 0; i < givenString.length - 1; i++) {
-//     for (let j = i + 1; j < givenString.length; j++) {
-//       let isTheSame = true,
-//         idxLeft = i,
-//         idxRight = j;
-//       while (idxLeft < idxRight) {
-//         if (givenString[idxLeft++] !== givenString[idxRight--]) {
-//           isTheSame = false;
-//         }
-//       }
-//       if (isTheSame) {
-//         // console.log(givenString.slice(i, j + 1));
-//         palindromicArray.push(givenString.slice(i, j + 1));
-//       }
-//     }
-//   }
-//   return palindromicArray;
-// };
-// console.log(findPalindromic("array"));
-// findPalindromic("kajak");
-// findPalindromic("asdasdsa");
-// findPalindromic("abcdefg");
-// findPalindromic("abcdefgokoe");
 
 // 3) Given two strings, write a program that efficiently finds the longest common subsequence. ‘karol rolki’
 
@@ -102,59 +186,82 @@ console.log(searchCommon.FindCommon());
 
 const matrixA = [
   [3, 2, 0],
-  [1, 1, 2],
+  [1, 1, 2]
 ];
 
 const matrixB = [
   [2, 4, 0],
   [1, 0, 2],
-  [0, 3, 3],
+  [0, 3, 3]
 ];
-//class matrixValidator, method multiplyValidation:
-function matrixValidation(matrixA, matrixB) {
-  let correct = false,
-    correctA = false,
-    correctB = false;
-  if (matrixA.length === 1 && matrixB.length === 1) {
-    correct = true;
-  }
-  for (let i = 0; i < matrixA.length - 1; i++) {
-    if (matrixA[i].length === matrixA[i + 1].length) {
-      correctA = true;
-    }
-  }
-  for (let i = 0; i < matrixB.length - 1; i++) {
-    if (matrixB[i].length === matrixB[i + 1].length) {
-      correctB = true;
-    }
-  }
-  if (correctA && correctB) {
-    if (matrixA[0].length === matrixB.length) {
+
+class MatrixValidator {
+  constructor() {  }
+  MultiplyValidator(matrixA, matrixB) {
+    let correct = false,
+      correctA = false,
+      correctB = false;
+    if (matrixA.length === 1 && matrixB.length === 1) {
       correct = true;
     }
-  }
-  if (!correct) {
-    console.log("wrong matrix dimensions");
-  }
-  return correct;
-}
-console.log(matrixValidation(matrixA, matrixB));
-
-// add class: MatrixOperator and another class to present result
-function matrixMulti(matrixA, matrixB) {
-  let result = [];
-  for (let i = 0; i < matrixA.length; i++) {
-    let row = [];
-    for (let j = 0; j < matrixB.length; j++) {
-      let element = 0;
-      for (let k = 0; k < matrixB[0].length; k++) {
-        element += matrixA[i][k] * matrixB[k][j];
+    for (let i = 0; i < matrixA.length - 1; i++) {
+      if (matrixA[i].length === matrixA[i + 1].length) {
+        correctA = true;
       }
-      row.push(element);
     }
-    result.push(row);
+    for (let i = 0; i < matrixB.length - 1; i++) {
+      if (matrixB[i].length === matrixB[i + 1].length) {
+        correctB = true;
+      }
+    }
+    if (correctA && correctB) {
+      if (matrixA[0].length === matrixB.length) {
+        correct = true;
+      }
+    }
+    if (!correct) {
+      console.log("wrong matrix dimensions");
+    }
+    return correct;
   }
-  return result;
+
 }
 
-console.table(matrixMulti(matrixA, matrixB));
+class MatrixOperator {
+  constructor(){}
+  MatrixMultiplier(matrixA, matrixB) {
+    let result = [];
+    for (let i = 0; i < matrixA.length; i++) {
+      let row = [];
+      for (let j = 0; j < matrixB.length; j++) {
+        let element = 0;
+        for (let k = 0; k < matrixB[0].length; k++) {
+          element += matrixA[i][k] * matrixB[k][j];
+        }
+        row.push(element);
+      }
+      result.push(row);
+    }
+    return result;
+  }
+}
+
+class MatrixCalculator {
+  constructor(matrixValidator, matrixOperator){
+    this.matrixValidator = matrixValidator;
+    this.matrixOperator = matrixOperator;
+  }
+  MatrixMultiply(matrixA, matrixB){
+    if(this.matrixValidator.MultiplyValidator(matrixA, matrixB)){
+      return this.matrixOperator.MatrixMultiplier(matrixA, matrixB)
+    }
+  }
+}
+
+let matrixValidator = new MatrixValidator();
+let matrixOperator = new MatrixOperator();
+let matrixCalculator = new MatrixCalculator(matrixValidator, matrixOperator);
+
+let result = matrixCalculator.MatrixMultiply(matrixA, matrixB);
+console.table(result);
+
