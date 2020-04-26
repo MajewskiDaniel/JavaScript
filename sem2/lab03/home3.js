@@ -26,32 +26,41 @@ const treasureMap = [
 ];
 const startingArea = 11;
 
-const mapValidation = function (treasureMap) {
-  let mapCorrect = true;
-  treasureMap.forEach((row) => {
-    row.forEach((hint) => {
-      if (typeof hint !== "number") mapCorrect = false;
+class MapValidator {
+  constructor() {}
+  mapValidation(treasureMap) {
+    let mapCorrect = true;
+    treasureMap.forEach((row) => {
+      row.forEach((hint) => {
+        if (typeof hint !== "number") mapCorrect = false;
+      });
     });
-  });
-  return `map is ${mapCorrect}`;
-};
-
-const treasureHunt = function (treasureMap, startingArea) {
-  let searchArea = startingArea;
-  let path = [];
-  path.push(startingArea);
-  while (searchArea !== treasureMap[parseInt(searchArea.toString()[0]) - 1][parseInt(searchArea.toString()[1]) - 1]) {
-    searchArea = treasureMap[parseInt(searchArea.toString()[0]) - 1][parseInt(searchArea.toString()[1]) - 1];
-    path.push(searchArea);
+    return `map is ${mapCorrect}`;
   }
-  return {
-    path: path,
-    treasure: `the treasure is in: row ${searchArea.toString()[0]}, column ${searchArea.toString()[1]};`,
-  };
-};
-console.log(mapValidation(treasureMap));
-console.table(treasureHunt(treasureMap, startingArea).path);
-console.log(treasureHunt(treasureMap, startingArea).treasure);
+}
+
+class TreasureHunt {
+  constructor() {}
+  treasureHunt(treasureMap, startingArea) {
+    let searchArea = startingArea;
+    let path = [];
+    path.push(startingArea);
+    while (searchArea !== treasureMap[Math.floor(searchArea / 10) - 1][(searchArea % 10) - 1]) {
+      searchArea = treasureMap[Math.floor(searchArea / 10) - 1][(searchArea % 10) - 1];
+      path.push(searchArea);
+    }
+    return {
+      path: path,
+      treasure: `the treasure is in: row ${searchArea.toString()[0]}, column ${searchArea.toString()[1]};`,
+    };
+  }
+}
+const isMapValid = new MapValidator();
+console.log(isMapValid.mapValidation(treasureMap));
+
+const whereIsTreasure = new TreasureHunt();
+console.table(whereIsTreasure.treasureHunt(treasureMap, startingArea).path);
+console.log(whereIsTreasure.treasureHunt(treasureMap, startingArea).treasure);
 
 // 2) Chess board. Program is to choose at random one of the chess piece (except the pawn) and place it at the random spot on the board.
 // After placing any piece (except first one) check all present pieces move ranges and see if any can reach other piece. Is so Give that pieces position and quit program.
@@ -59,11 +68,28 @@ console.log(treasureHunt(treasureMap, startingArea).treasure);
 
 // chess board 8x8: a-h and 1-8
 // pieces:
-// king -
-// queen -
-// bishop - goniec
-// knight - skoczek
-// rook - wieża
+// king - (K)
+// queen - (Q)
+// bishop - goniec - (b)
+// knight - skoczek - (k)
+// rook - wieża - (r)
+// i'm going to place radndomly pieces one by one on the board by changing current position to it's first letter (K,Q,b,k,r) and then check possible moves.
+// i need to make moves map to each piece
+
+const board = [
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+];
+
+const mapOfMoves = {
+  king: [i++, j++],
+};
 
 // 3) [EXAM] Create bouncy simulator. Get board from ExampleInput.js. X – border, 0 – boards object can travel, 1 – bouncing object.
 // The program is to show how the object would travel and bounce against the walls. The program is to end when object comes back to original position.
