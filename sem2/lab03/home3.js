@@ -63,7 +63,7 @@ console.table(whereIsTreasure.treasureHunt(treasureMap, startingArea).path);
 console.log(whereIsTreasure.treasureHunt(treasureMap, startingArea).treasure);
 
 // 2) Chess board. Program is to choose at random one of the chess piece (except the pawn) and place it at the random spot on the board.
-// After placing any piece (except first one) check all present pieces move ranges and see if any can reach other piece. Is so Give that pieces position and quit program.
+// After placing any piece (except first one) check all present pieces move ranges and see if any can reach other piece. If so, give that pieces position and quit program.
 // FACTORY (with class hierarhy) + SINGLETON pattern
 
 // chess board 8x8: a-h and 1-8
