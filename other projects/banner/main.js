@@ -21,7 +21,7 @@ const dots = [...document.querySelectorAll(".dots span")];
 const time = 5000;
 let active = 0;
 
-// Implenetation
+// Implementation
 const changeDot = () => {
   const activeDot = dots.findIndex((dot) => dot.classList.contains("active"));
   dots[activeDot].classList.remove("active");
