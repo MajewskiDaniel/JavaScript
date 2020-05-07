@@ -49,13 +49,16 @@ class Player {
   compareCards() {
     if (this.uncoveredCards.includes(this.drawnCard.value) === true) {
       //check this ^^^
+      this.foundPairs.push(this.drawnCard);
+      this.foundPairs.push("the same card from uncoveredCards"); //check this
       this.points++;
-      this.foundPairs.push(this.drawnCard); //check this
-      this.foundPairs.push(this.drawnCard); //check this
-      this.board.splice(); //check this
+      this.board.splice("drwan card"); //check this
+      this.board.splice("the same card from uncoveredCards"); //check this
     } else {
       this.uncoveredCards.push(this.drawnCard);
     }
+    //instead of spliceing and pushing cards, we can just check if that card was already uncovered and return true or false
+    //and move this logic to class Game? could we access to drawnCards and uncoveredCards from there (from Game class)?
   }
 }
 
