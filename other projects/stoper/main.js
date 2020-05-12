@@ -17,11 +17,7 @@ const startStopTime = () => {
 
 const countingFunction = () => {
   counter++;
-  if (counter % 100 === 0) {
-    display.textContent = `${counter / 100}.00`;
-  } else if (counter % 10 === 0) {
-    display.textContent = `${counter / 100}0`;
-  } else display.textContent = `${counter / 100}`;
+  display.textContent = (counter / 100).toFixed(2);
 };
 
 const resetTime = () => {
