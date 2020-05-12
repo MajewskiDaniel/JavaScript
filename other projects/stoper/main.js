@@ -21,13 +21,14 @@ const startStopTime = () => {
     clearInterval(start);
     mainBtn.textContent = "Start";
   }
-  const resetTime = () => {
-    clearInterval(start);
-    mainBtn.textContent = "Start";
-    display.textContent = "---";
-    counter = 0;
-  };
-  resetBtn.addEventListener("click", resetTime);
 };
 
+const resetTime = () => {
+  clearInterval(start);
+  mainBtn.textContent = "Start";
+  display.textContent = "---";
+  counter = 0;
+};
+
+resetBtn.addEventListener("click", resetTime);
 mainBtn.addEventListener("click", startStopTime);
