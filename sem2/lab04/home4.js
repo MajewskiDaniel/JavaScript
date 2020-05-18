@@ -6,7 +6,7 @@
 // X – border, 0 – boards object can travel, 1 – bouncing object. The program is to show how the object would travel and bounce against the walls.
 // Bouncing objects starts in any corner. 1 and Y position may vary.
 
-class Board {
+class MemoryBoard {
   constructor(numberOfPairs) {
     this.numberOfPairs = numberOfPairs;
     this.board = [];
@@ -30,13 +30,20 @@ class Board {
   }
 }
 
-class Player {
-  constructor(board) {
+class MemoryPlayer {
+  constructor(board, uncoveredCards = []) {
     this.points = 0;
     this.foundPairs = [];
     this.board = board;
-    this.uncoveredCards = [];
+    this.uncoveredCards = uncoveredCards;
     this.drawnCard;
+    this.numberOfDrawnCards = 0;
+    this.nextCard = false;
+  }
+  start() {
+    if (this.numberOfDrawnCards <= 2 || this.nextCard === true) {
+      uncoverCard(); //check if player can draw a card
+    } else return this.uncoveredCards;
   }
   uncoverCard() {
     let index = Math.floor(Math.random() * this.board.length);
@@ -44,19 +51,40 @@ class Player {
       this.uncoverCard();
     } else {
       this.drawnCard = this.board[index];
+      this.numberOfDrawnCards++;
+      this.compareCards();
     }
   }
   compareCards() {
-    if (this.uncoveredCards.includes(this.drawnCard.value) === true) {
-      //check this ^^^
+    if (
+      this.uncoveredCards.some(
+        (card) => card.value === this.drawnCard.value
+      ) === true
+    ) {
+      //checking if we have found a pair
+      // console.log("includes this card");
       this.foundPairs.push(this.drawnCard);
-      this.foundPairs.push("the same card from uncoveredCards"); //check this
+      this.foundPairs.push(
+        this.uncoveredCards.find((card) => card.value === this.drawnCard.value)
+      ); //the same card from uncoveredCards
       this.points++;
-      this.board.splice("drwan card"); //check this
-      this.board.splice("the same card from uncoveredCards"); //check this
+      this.board.splice(this.board.indexOf(this.drawnCard), 1); //removing drawn card from board
+      // this.board.splice(this.uncoveredCards.indexOf(),1); //removing the same card from uncoveredCards -don't need that
+      this.board.splice(
+        this.board.indexOf(
+          this.uncoveredCards.find(
+            (card) => card.value === this.drawnCard.value
+          )
+        ),
+        1
+      ); //removing second card from board
+      this.nextCard = true;
     } else {
       this.uncoveredCards.push(this.drawnCard);
+      this.nextCard = false;
     }
+    this.start();
+
     //instead of spliceing and pushing cards, we can just check if that card was already uncovered and return true or false
     //and move this logic to class Game? could we access to drawnCards and uncoveredCards from there (from Game class)?
   }
@@ -66,11 +94,11 @@ class Game {
   constructor(numberOfPlayers) {} //random number
 }
 
-const board = new Board(15);
+const board = new MemoryBoard(10);
 board.createCards();
 board.fillTheBoard();
 console.table(board.board);
-const player = new Player(board.board);
-player.uncoverCard();
+const player = new MemoryPlayer(board.board);
+player.start();
 console.log(player.drawnCard);
 console.table(player.uncoveredCards);
