@@ -34,7 +34,7 @@ class MemoryPlayer {
   constructor(board, uncoveredCards = []) {
     this.points = 0;
     this.foundPairs = [];
-    this.board = board; // hmmm... board should be common so it should be outside the player class
+    this.board = board; // hmmm... board should be common, so it should be outside the player class
     this.uncoveredCards = uncoveredCards;
     this.drawnCard;
     this.numberOfDrawnCards = 0;
@@ -69,7 +69,6 @@ class MemoryPlayer {
       ); //the same card from uncoveredCards
       this.points++;
       this.board.splice(this.board.indexOf(this.drawnCard), 1); //removing drawn card from board
-      // this.board.splice(this.uncoveredCards.indexOf(),1); //removing the same card from uncoveredCards -don't need that
       this.board.splice(
         this.board.indexOf(
           this.uncoveredCards.find(
@@ -95,38 +94,44 @@ const randomNumberOfPlayers = (min, max) => {
 }; //random number
 
 class Game {
-  constructor(numberOfPlayers, player) {
+  constructor(numberOfPlayers, player, board) {
     this.numberOfPlayers = numberOfPlayers;
     this.player = player;
     this.winner;
     this.players = [];
+    this.board = board; //board added. i need to have board in Game, not outside
   }
   getPlayers() {
-    for (let i = 1; i <= numberOfPlayers; i++) {
+    for (let i = 1; i <= this.numberOfPlayers; i++) {
       this.players.push({ playerNo: i, player: this.player, score: 0 });
     }
   }
   letsPlay() {
-    this.players.forEach((player) => player.start());
-    if (board.length > 0) this.letsPlay();
+    this.players.forEach((player) => player.player.start());
+    if (memBoard.board.length > 0) this.letsPlay();
+    //memBoard from highest scope.
     else this.scoreCounting();
   }
   scoreCounting() {
     console.log(`There were ${this.players.length} players`);
     console.log(
-      `The winner is player number:${winner} with ${
-        this.players[winner - 1].score
+      `The winner is player number:${this.winner} with ${
+        this.players[this.winner - 1].score
       } points`
     );
   }
 }
 
-const board = new MemoryBoard(10);
-board.createCards();
-board.fillTheBoard();
-console.table(board.board);
-const player = new MemoryPlayer(board.board);
-player.start();
-console.log(player.drawnCard);
-console.table(player.uncoveredCards);
+const memBoard = new MemoryBoard(10);
+memBoard.createCards();
+memBoard.fillTheBoard();
+// console.table(board.board);
+const player = new MemoryPlayer(memBoard.board);
+// player.start();
+// console.log(player.drawnCard);
+// console.table(player.uncoveredCards);
 const memoryGame = new Game(randomNumberOfPlayers(2, 4), player);
+memoryGame.getPlayers();
+console.table(memoryGame.players);
+memoryGame.letsPlay();
+console.table(memoryGame.players);
