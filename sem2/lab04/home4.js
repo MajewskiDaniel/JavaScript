@@ -34,7 +34,7 @@ class MemoryPlayer {
   constructor(board, uncoveredCards = []) {
     this.points = 0;
     this.foundPairs = [];
-    this.board = board;
+    this.board = board; // hmmm... board should be common so it should be outside the player class
     this.uncoveredCards = uncoveredCards;
     this.drawnCard;
     this.numberOfDrawnCards = 0;
@@ -42,7 +42,7 @@ class MemoryPlayer {
   }
   start() {
     if (this.numberOfDrawnCards <= 2 || this.nextCard === true) {
-      uncoverCard(); //check if player can draw a card
+      this.uncoverCard(); //check if player can draw a card
     } else return this.uncoveredCards;
   }
   uncoverCard() {
@@ -90,8 +90,35 @@ class MemoryPlayer {
   }
 }
 
+const randomNumberOfPlayers = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}; //random number
+
 class Game {
-  constructor(numberOfPlayers) {} //random number
+  constructor(numberOfPlayers, player) {
+    this.numberOfPlayers = numberOfPlayers;
+    this.player = player;
+    this.winner;
+    this.players = [];
+  }
+  getPlayers() {
+    for (let i = 1; i <= numberOfPlayers; i++) {
+      this.players.push({ playerNo: i, player: this.player, score: 0 });
+    }
+  }
+  letsPlay() {
+    this.players.forEach((player) => player.start());
+    if (board.length > 0) this.letsPlay();
+    else this.scoreCounting();
+  }
+  scoreCounting() {
+    console.log(`There were ${this.players.length} players`);
+    console.log(
+      `The winner is player number:${winner} with ${
+        this.players[winner - 1].score
+      } points`
+    );
+  }
 }
 
 const board = new MemoryBoard(10);
@@ -102,3 +129,4 @@ const player = new MemoryPlayer(board.board);
 player.start();
 console.log(player.drawnCard);
 console.table(player.uncoveredCards);
+const memoryGame = new Game(randomNumberOfPlayers(2, 4), player);
