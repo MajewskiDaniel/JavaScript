@@ -109,7 +109,8 @@ class Game {
   letsPlay() {
     this.players.forEach((player) => player.player.start());
     if (memBoard.board.length > 0) this.letsPlay();
-    //memBoard from highest scope.
+    //memBoard from highest scope. I don't like this :/ I need to change it
+    // i need to pass memBoard from Player class to Game class somehow
     else this.scoreCounting();
   }
   scoreCounting() {
