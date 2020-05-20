@@ -28,21 +28,41 @@ class MemoryBoard {
       this.cards.splice(index, 1);
     }
   }
+
+  isFinished() {
+    // return this.
+  }
+  getCard(id) {}
+  compareCardPair(card1, card2) {
+    const isSame = card1 === card2;
+    if (isSame) {
+      this._removeCardPair(card1, card2);
+    }
+    return isSame;
+  }
+
+  _removeCardPair() {}
 }
 
 class MemoryPlayer {
-  constructor(board, uncoveredCards = []) {
+  constructor(uncoveredCards = []) {
     this.points = 0;
     this.foundPairs = [];
-    this.board = board; // hmmm... board should be common, so it should be outside the player class
     this.uncoveredCards = uncoveredCards;
     this.drawnCard;
     this.numberOfDrawnCards = 0;
     this.nextCard = false;
   }
-  start() {
+  start(board) {
     if (this.numberOfDrawnCards <= 2 || this.nextCard === true) {
       this.uncoverCard(); //check if player can draw a card
+      const card1 = board.getCard(cardId);
+      const card2 = board.getCard(cardId);
+
+      const isSame = board.compareCard(card1, card2);
+      // increment own score if true
+
+      return isSame;
     } else return this.uncoveredCards;
   }
   uncoverCard() {
@@ -93,20 +113,34 @@ const randomNumberOfPlayers = (min, max) => {
 }; //random number
 
 class Game {
-  constructor(numberOfPlayers, player, board) {
-    this.numberOfPlayers = numberOfPlayers;
-    this.player = player;
+  // constructor(numberOfPlayers, playerClass, board) {
+
+  constructor(Board) {
+    // this.numberOfPlayers = numberOfPlayers;
+    // this.player = player;
     this.winner;
     this.players = [];
-    this.board = board; //board added. i need to have board in Game, not outside
+    this.board = new Board(); //board added. i need to have board in Game, not outside
   }
+
+  addPlayer(Player) {
+    this.players.push(new Player(i));
+  }
+
   getPlayers() {
     for (let i = 1; i <= this.numberOfPlayers; i++) {
       this.players.push({ playerNo: i, player: this.player, score: 0 });
     }
   }
   letsPlay() {
+    this.board.prepareGame();
+
     this.players.forEach((player) => player.player.start());
+    while (!this.board.isFinished()) {
+      let currentPlayer;
+      let didFind = currentPlayer.start(this.board); // Player Turn
+      // if didFind = true incprement player score
+    }
     if (memBoard.board.length > 0) this.letsPlay();
     //memBoard from highest scope. I don't like this :/ I need to change it
     // i need to pass memBoard from Player class to Game class somehow
