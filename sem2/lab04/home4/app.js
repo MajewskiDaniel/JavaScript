@@ -14,17 +14,3 @@ const randomNumberOfPlayers = (min, max) => {
 };
 const memoryGame = new Game(board, player, randomNumberOfPlayers(2, 4));
 memoryGame.gameStart();
-
-// const memBoard = new MemoryBoard(10);
-// memBoard.createCards();
-// memBoard.fillTheBoard();
-// // console.table(board.board);
-// const player = new MemoryPlayer(memBoard.board);
-// // player.start();
-// // console.log(player.drawnCard);
-// // console.table(player.uncoveredCards);
-// const memoryGame = new Game(randomNumberOfPlayers(2, 4), player);
-// memoryGame.getPlayers();
-// console.table(memoryGame.players);
-// memoryGame.letsPlay();
-// console.table(memoryGame.players);

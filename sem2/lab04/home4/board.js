@@ -29,22 +29,10 @@ class MemoryBoard {
     }
   }
 
-  isFinished() {
-    if (this.board.length > 0) return false;
-    else return true;
-  }
-
-  //
-  getCard(id) {}
-  compareCardPair(card1, card2) {
-    const isSame = card1 === card2;
-    if (isSame) {
-      this._removeCardPair(card1, card2);
-    }
-    return isSame;
-  }
-
-  _removeCardPair() {}
+  // isFinished(board) {
+  //   if (board.length > 0) return false;
+  //   else return true;
+  // }
 }
 
 module.exports = MemoryBoard;
