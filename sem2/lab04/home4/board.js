@@ -7,6 +7,12 @@ class MemoryBoard {
     this.cards = [];
     this.idx = 1;
   }
+  prepareBoard() {
+    this.createCards();
+    this.fillTheBoard();
+    console.table(this.board);
+  }
+
   createCards() {
     for (let i = 1; i <= this.numberOfPairs; i++) {
       let cardA = { idx: this.idx++, value: i };
@@ -24,8 +30,11 @@ class MemoryBoard {
   }
 
   isFinished() {
-    // return this.
+    if (this.board.length > 0) return false;
+    else return true;
   }
+
+  //
   getCard(id) {}
   compareCardPair(card1, card2) {
     const isSame = card1 === card2;
@@ -37,3 +46,5 @@ class MemoryBoard {
 
   _removeCardPair() {}
 }
+
+module.exports = MemoryBoard;
