@@ -27,24 +27,23 @@ class Game {
   }
   letsPlay() {
     for (let i = 0; i < this.players.length; i++) {
-      this.gameBoard.board = this.players[i].player.playersMove(
-        this.gameBoard.board
-      );
-      // if (this.gameBoard.isFinished(this.gameBoard.board)) break;
-      if (this.gameBoard.length === 0) break;
-      if (i === this.players.length) i = 0;
+      if (this.gameBoard.board.length === 0) break;
+      // console.log(this.players[i]);
+      this.players[i].player.playersMove(this.gameBoard.board);
+      this.gameBoard.board = this.players[i].player.getPlayersBoard();
+      if (i === this.players.length - 1) i = -1;
     }
     this.gamesScore();
   }
   gamesScore() {
     this.players.forEach((player) => (player.score = player.player.points));
     console.log(`SCOREBOARD:`);
-    this.players.forEach((player) =>
+    this.players.forEach((player) => {
       console.log(
-        `player number:${player.playerNo}, found pairs:${player.score}`
-      )
-    );
-    this.players.forEach((player) => console.table(player.player.foundPairs));
+        `player number:${player.playerNo}, number of found pairs:${player.score}`
+      );
+      console.table(player.player.foundPairs);
+    });
   }
 }
 

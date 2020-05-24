@@ -28,11 +28,6 @@ class MemoryBoard {
       this.cards.splice(index, 1);
     }
   }
-
-  // isFinished(board) {
-  //   if (board.length > 0) return false;
-  //   else return true;
-  // }
 }
 
 module.exports = MemoryBoard;

@@ -7,7 +7,7 @@ const MemoryBoard = require("./board");
 const MemoryPlayer = require("./player");
 const Game = require("./game");
 
-const board = new MemoryBoard(10);
+const board = new MemoryBoard(20);
 const player = new MemoryPlayer();
 const randomNumberOfPlayers = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;

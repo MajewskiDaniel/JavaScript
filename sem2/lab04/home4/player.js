@@ -8,11 +8,22 @@ class MemoryPlayer {
     this.numberOfDrawnCards = 0;
     this.nextCard = false;
     this.points = 0;
+    this.playerBoard = [];
   }
   playersMove(board) {
-    if (this.numberOfDrawnCards < 2 || this.nextCard === true) {
+    if (
+      (this.numberOfDrawnCards < 2 || this.nextCard === true) &&
+      board.length > 0
+    ) {
       this.uncoverCard(board);
-    } else return board;
+    } else {
+      this.numberOfDrawnCards = 0;
+      this.nextCard = false;
+      this.playerBoard = board;
+    }
+  }
+  getPlayersBoard() {
+    return this.playerBoard;
   }
 
   uncoverCard(board) {
@@ -23,8 +34,6 @@ class MemoryPlayer {
     } else {
       this.drawnCard = board[index];
       this.numberOfDrawnCards++;
-      console.log("drawnCards");
-      console.table(this.drawnCard);
       this.compareCards(board);
     }
   }
@@ -53,10 +62,8 @@ class MemoryPlayer {
       this.uncoveredCards.push(this.drawnCard);
       this.nextCard = false;
     }
-    console.log("uncoveredCards");
-    console.table(this.uncoveredCards);
-    console.log("foundPairs");
-    console.table(this.foundPairs);
+
+    if (!board.length) this.nextCard = false;
     this.playersMove(board);
   }
 }
