@@ -8,18 +8,23 @@
 const board = require("./ExamInput.js").board;
 
 class BouncingSimulator {
-  constructor(board) {
+  constructor(board, vectorX, vectorY) {
     this.board = board;
-    this.vector = { x: 1, y: 1 };
+    this.vector = { x: vectorX, y: -vectorY };
     this.ballPosition = {};
     this.newBallPosition;
     this.startingBallPosition;
+    this.numOfMoves = 0;
+    //i can add an option to enter starting ball position as parameter
   }
   letsStart() {
-    this.getBallPosition(); //maybe i could assign it straight to startingBallPosition? do i need to assign it to ballPosition?
+    this.getBallPosition();
     this.startingBallPosition = this.ballPosition;
     this.ballsMove();
-    while (this.ballPosition !== this.startingBallPosition) {
+    while (
+      this.ballPosition.x !== this.startingBallPosition.x ||
+      this.ballPosition.y !== this.startingBallPosition.y
+    ) {
       this.ballsMove();
     }
     this.endOfGame();
@@ -33,10 +38,8 @@ class BouncingSimulator {
         }
       }
     }
-    // console.log(this.ballPosition);
   }
   ballsMove() {
-    // let newBallPosition = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
     this.newBallPosition = {
       x: this.ballPosition.x + this.vector.x,
       y: this.ballPosition.y + this.vector.y,
@@ -48,24 +51,30 @@ class BouncingSimulator {
       this.board[this.ballPosition.y][this.ballPosition.x] = "0";
       this.ballPosition = this.newBallPosition;
       this.board[this.ballPosition.y][this.ballPosition.x] = "1";
+      this.numOfMoves++;
+      console.log(`v: ${this.vector.x}, ${this.vector.y}`);
+      console.log(`position: ${this.ballPosition.x}, ${this.ballPosition.y}`);
+      console.table(this.board);
     }
-
-    console.log(this.ballPosition);
   }
   moveVectorChange() {
-    if (board[this.newBallPosition.y][this.ballPosition.x] === "X") {
+    if (
+      board[this.newBallPosition.y][this.ballPosition.x] === "X" &&
+      board[this.ballPosition.y][this.newBallPosition.x] === "X"
+    ) {
+      this.vector.y = -this.vector.y;
+      this.vector.x = -this.vector.x;
+    } else if (board[this.newBallPosition.y][this.ballPosition.x] === "X") {
       this.vector.y = -this.vector.y;
     } else if (board[this.ballPosition.y][this.newBallPosition.x] === "X") {
-      this.vector.x = -this.vector.x;
-    } else {
-      this.vector.y = -this.vector.y;
       this.vector.x = -this.vector.x;
     }
   }
   endOfGame() {
-    console.log(`The ball has returned it's starting position`);
+    console.log(`The ball has returned to it's starting position`);
+    console.log(`number of moves: ${this.numOfMoves}`);
   }
 }
 
-const bounce = new BouncingSimulator(board);
+const bounce = new BouncingSimulator(board, 1, -1);
 bounce.letsStart();
