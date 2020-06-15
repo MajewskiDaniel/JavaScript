@@ -7,6 +7,10 @@
 // and bounce against the walls. Bouncing objects starts in any corner.
 // 1 and Y position 	may vary.
 
+
+
+// !!! i need to add condition when game ends (in case of infinite loop);
+
 const board = require("./ExamInput.js").board;
 
 class BouncingSimulator {
