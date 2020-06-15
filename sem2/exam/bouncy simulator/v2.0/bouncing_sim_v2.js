@@ -5,7 +5,13 @@
 // The program is to show how the object would travel and bounce against the walls.
 // The program is to end when object comes back to original position.
 
-const board = require("./ExamInput_1a.js").board;
+// 2) [EXAM] Create bouncy simulator. Get board from ExampleInput.js.
+// Y – when bouncing objects enters it move it to random direction other that it came and Y turns into 0,
+// X – border, 0 – boards object can travel, 1 – bouncing object.
+// The program is to show how the object would travel and bounce against the walls.
+// Bouncing objects starts in any corner. 1 and Y position 	may vary.
+
+const board = require("./ExamInput.js").board;
 
 class BouncingSimulator {
   constructor(board, vectorX, vectorY) {
