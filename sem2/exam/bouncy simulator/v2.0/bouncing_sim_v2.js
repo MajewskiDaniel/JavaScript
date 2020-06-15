@@ -7,17 +7,8 @@
 // and bounce against the walls. Bouncing objects starts in any corner.
 // 1 and Y position 	may vary.
 
-<<<<<<< HEAD
-// 2) [EXAM] Create bouncy simulator. Get board from ExampleInput.js.
-// Y – when bouncing objects enters it move it to random direction other that it came and Y turns into 0,
-// X – border, 0 – boards object can travel, 1 – bouncing object.
-// The program is to show how the object would travel and bounce against the walls.
-// Bouncing objects starts in any corner. 1 and Y position 	may vary.
-=======
-
-
 // !!! i need to add condition when game ends (in case of infinite loop);
->>>>>>> 6db9f94ff0cea0ad4de8b6b272968cfa79465962
+
 
 const board = require("./ExamInput.js").board;
 
