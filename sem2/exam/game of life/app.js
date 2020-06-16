@@ -12,6 +12,32 @@ const blinker = [
   [4, 5],
 ];
 
-const game = new GameOfLife(board, blinker);
+const toad = [
+  [3, 3],
+  [3, 4],
+  [3, 5],
+  [4, 2],
+  [4, 3],
+  [4, 4],
+];
+
+const beacon = [
+  [2, 2],
+  [2, 3],
+  [3, 2],
+  [4, 5],
+  [5, 4],
+  [5, 5],
+];
+
+const glider = [
+  [0, 0],
+  [1, 1],
+  [1, 2],
+  [2, 0],
+  [2, 1],
+];
+
+const game = new GameOfLife(board, glider);
 game.startTheGame();
-console.table(game.board);
+// console.table(game.board);
