@@ -25,6 +25,7 @@ class GameOfLife {
   startTheGame() {
     this.enliveInitialCells();
     this.checkLivingCells();
+    this.isAnyoneBorn();
   }
   enliveInitialCells() {
     this.initialCells.forEach((cell) => {
@@ -41,17 +42,44 @@ class GameOfLife {
           this.board[cell[0] + this.surroundings[i][0]][
             cell[1] + this.surroundings[i][1]
           ] === 1
-        )
+        ) {
           surroundingLife++;
+        }
       }
       if (2 <= surroundingLife <= 3) {
         this.survivingCells.push(cell);
       } else this.dyingCells.push(cell);
     });
   }
-  whoDies() {}
+  isAnyoneBorn() {
+    this.livingCells.forEach((cell) => {
+      let surroundingCoordinates = [];
+      for (let i = 0; i < this.surroundings.length; i++) {
+        surroundingCoordinates.push(
+          this.board[cell[0] + this.surroundings[i][0]][
+            cell[1] + this.surroundings[i][1]
+          ]
+        );
+      }
+      surroundingCoordinates.forEach((cell) => {
+        let surroundingLife = 0;
+        for (let i = 0; i < this.surroundings.length; i++) {
+          if (
+            this.board[cell[0] + this.surroundings[i][0]][
+              cell[1] + this.surroundings[i][1]
+            ] === 1
+          ) {
+            surroundingLife++;
+          }
+        }
+        if ((surroundingLife = 3)) {
+          this.emergingCells.push(cell);
+        }
+      });
+      surroundingCoordinates.length = 0;
+    });
+  }
   letThemLive() {}
-  letThemDie() {}
 }
 
 module.exports = GameOfLife;
