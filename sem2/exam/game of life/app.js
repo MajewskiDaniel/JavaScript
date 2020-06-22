@@ -38,6 +38,5 @@ const glider = [
   [2, 1],
 ];
 
-const game = new GameOfLife(board, glider);
+const game = new GameOfLife(board, beacon, 20);
 game.startTheGame();
-// console.table(game.board);
