@@ -105,9 +105,13 @@ class GameOfLife {
     });
   }
   letThemLive() {
-    this.emergingCells.forEach((cell) => {
-      this.board[cell[0]][cell[1]] = 1;
-    });
+    this.emergingCells
+      .filter((value, index, self) => {
+        return self.indexOf(value) === index;
+      })
+      .forEach((cell) => {
+        this.board[cell[0]][cell[1]] = 1;
+      });
   }
   letThemDie() {
     this.dyingCells.forEach((cell) => {
