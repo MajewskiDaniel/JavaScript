@@ -105,13 +105,13 @@ class GameOfLife {
     });
   }
   letThemLive() {
-    this.emergingCells
-      .filter((value, index, self) => {
-        return self.indexOf(value) === index;
-      })
-      .forEach((cell) => {
-        this.board[cell[0]][cell[1]] = 1;
-      });
+    //findIndex ??
+    // this.emergingCells = this.emergingCells.filter((value, index, self) => {
+    //   return self.indexOf(value) === index;
+    // });
+    this.emergingCells.forEach((cell) => {
+      this.board[cell[0]][cell[1]] = 1;
+    });
   }
   letThemDie() {
     this.dyingCells.forEach((cell) => {

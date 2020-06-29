@@ -12,6 +12,7 @@ class BouncingSimulator {
     this.board = board;
     this.vector = { x: 1, y: 1 };
     this.ballPosition = {};
+
     this.newBallPosition;
     this.startingBallPosition;
     this.numOfMoves = 0;
@@ -44,7 +45,7 @@ class BouncingSimulator {
       x: this.ballPosition.x + this.vector.x,
       y: this.ballPosition.y + this.vector.y,
     };
-    if (board[this.newBallPosition.y][this.newBallPosition.x] === "X") {
+    if (this.board[this.newBallPosition.y][this.newBallPosition.x] === "X") {
       this.moveVectorChange();
       this.ballsMove();
     } else {
@@ -58,15 +59,18 @@ class BouncingSimulator {
     }
   }
   moveVectorChange() {
-    if (
-      board[this.newBallPosition.y][this.ballPosition.x] === "X" &&
-      board[this.ballPosition.y][this.newBallPosition.x] === "X"
+    // if (
+    //   this.board[this.newBallPosition.y][this.ballPosition.x] === "X" &&
+    //   this.board[this.ballPosition.y][this.newBallPosition.x] === "X"
+    // ) {
+    //   this.vector.y = -this.vector.y;
+    //   this.vector.x = -this.vector.x;
+    // } else
+    if (this.board[this.newBallPosition.y][this.ballPosition.x] === "X") {
+      this.vector.y = -this.vector.y;
+    } else if (
+      this.board[this.ballPosition.y][this.newBallPosition.x] === "X"
     ) {
-      this.vector.y = -this.vector.y;
-      this.vector.x = -this.vector.x;
-    } else if (board[this.newBallPosition.y][this.ballPosition.x] === "X") {
-      this.vector.y = -this.vector.y;
-    } else if (board[this.ballPosition.y][this.newBallPosition.x] === "X") {
       this.vector.x = -this.vector.x;
     }
   }

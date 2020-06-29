@@ -38,5 +38,5 @@ const glider = [
   [2, 1],
 ];
 
-const game = new GameOfLife(board, glider, 20);
+const game = new GameOfLife(board, glider, 9);
 game.startTheGame();

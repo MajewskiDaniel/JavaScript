@@ -51,13 +51,15 @@ class BouncingSimulator {
       y: this.ballPosition.y + this.vector.y,
     };
     if (
-      board[this.newBallPosition.y][this.newBallPosition.x] === "X" ||
-      board[this.newBallPosition.y][this.ballPosition.x] === "X" ||
-      board[this.ballPosition.y][this.newBallPosition.x] === "X"
+      this.board[this.newBallPosition.y][this.newBallPosition.x] === "X" ||
+      this.board[this.newBallPosition.y][this.ballPosition.x] === "X" ||
+      this.board[this.ballPosition.y][this.newBallPosition.x] === "X"
     ) {
       this.borderXVectorChange();
       this.bounceLogic();
-    } else if (board[this.newBallPosition.y][this.newBallPosition.x] === "Y") {
+    } else if (
+      this.board[this.newBallPosition.y][this.newBallPosition.x] === "Y"
+    ) {
       this.obstacleYVectorChange();
       this.bounceLogic();
     } else this.ballsMove();
@@ -75,16 +77,20 @@ class BouncingSimulator {
   }
   borderXVectorChange() {
     if (
-      (board[this.newBallPosition.y][this.ballPosition.x] === "X" &&
-        board[this.ballPosition.y][this.newBallPosition.x] === "X") ||
-      (board[this.newBallPosition.y][this.ballPosition.x] === "0" &&
-        board[this.ballPosition.y][this.newBallPosition.x] === "0")
+      (this.board[this.newBallPosition.y][this.ballPosition.x] === "X" &&
+        this.board[this.ballPosition.y][this.newBallPosition.x] === "X") ||
+      (this.board[this.newBallPosition.y][this.ballPosition.x] === "0" &&
+        this.board[this.ballPosition.y][this.newBallPosition.x] === "0")
     ) {
       this.vector.y = -this.vector.y;
       this.vector.x = -this.vector.x;
-    } else if (board[this.newBallPosition.y][this.ballPosition.x] === "X") {
+    } else if (
+      this.board[this.newBallPosition.y][this.ballPosition.x] === "X"
+    ) {
       this.vector.y = -this.vector.y;
-    } else if (board[this.ballPosition.y][this.newBallPosition.x] === "X") {
+    } else if (
+      this.board[this.ballPosition.y][this.newBallPosition.x] === "X"
+    ) {
       this.vector.x = -this.vector.x;
     }
   }
